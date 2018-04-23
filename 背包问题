@@ -1,0 +1,53 @@
+import numpy as np
+
+#vloumn of package
+AMOUNT_PACK = 10
+#size of patch
+SIZE = [2, 3, 4, 5, 1, 4]
+#value of patch
+VALUE = [5, 4, 1, 3, 3, 2]
+#times
+TIMES = 50
+#生成parent数据
+ga_list = np.random.randint(2, size = (6,6))
+amount_size = np.zeros((6,), dtype = int)
+amount_value = np.zeros((6,), dtype = int)
+
+#get_gitness function
+size_check = 0
+def get_gitness(ga_list):
+    for i in range(6):
+        for j in range(6):
+            size_check = ga_list[i][j] * SIZE[j]
+            if(size_check < 10):
+                amount_size[i] += size_check
+                amount_value[i] += ga_list[i][j] * VALUE[j]
+            else:
+                ga_list = np.delete(ga_list, i, 0)
+
+    normalize = amount_size / np.sum(amount_size)
+    accumulation = np.cumsum(normalize)
+    print(normalize)
+    print(accumulation)
+
+    
+    # return ga_list
+
+#select function
+def selct(ga_list):
+    pass
+
+#crossover function
+def crossover():
+    pass
+
+#mutate function
+def mutate():
+    pass
+
+get_gitness(ga_list)
+#
+# result_list = get_gitness(ga_list)
+# print(ga_list)
+# print("----------------")
+# print(result_list)
